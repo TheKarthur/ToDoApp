@@ -3,13 +3,13 @@ import React, { useState } from "react";
 interface TodoItem {
   id: string;
   text: string;
-  description: string; // Adicionando a descrição opcional à interface do TodoItem
+  description: string;
 }
 
 interface Props {
   list: TodoItem[];
   onItemDelete: (id: string) => void;
-  onItemDoubleClick: (item: TodoItem) => void; // Adicionando um callback para lidar com o clique duplo
+  onItemDoubleClick: (item: TodoItem) => void;
 }
 
 function ListTodo({ list, onItemDelete, onItemDoubleClick }: Props) {
@@ -54,8 +54,8 @@ function ListTodo({ list, onItemDelete, onItemDoubleClick }: Props) {
               <span
                 className={
                   checkBoxValues[item.id]
-                    ? "ms-2 text-decoration-line-through opacity-50"
-                    : "ms-2"
+                    ? "ms-2 text-decoration-line-through opacity-50 user-select-none"
+                    : "ms-2 user-select-none"
                 }
               >
                 {item.text}

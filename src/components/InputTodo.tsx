@@ -35,7 +35,7 @@ function InputTodo({ label, placeholder }: Props) {
 
   const handleAddButtonClick = () => {
     if (inputValue.trim() !== "" && inputDescription.trim() !== "") {
-      if (listTodo.some((item) => item.text === inputValue.trim())) {
+      if (listTodo.some((item) => item.text === inputValue.trim() && item.description === inputDescription.trim())) {
         alert("The item is already in the list");
         return;
       }
