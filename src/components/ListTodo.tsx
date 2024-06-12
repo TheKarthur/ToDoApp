@@ -4,6 +4,7 @@ interface TodoItem {
   id: string;
   text: string;
   description: string;
+  status: 'Not started' | 'In progress' | 'Completed' | 'On Hold';
 }
 
 interface Props {
