@@ -43,7 +43,7 @@ function ListTodo({ list, onItemDelete, onItemDoubleClick }: Props) {
       {list.map((item) => (
         <li key={item.id} className="list-group-item" onDoubleClick={() => handleItemDoubleClick(item)}>
           <div className="d-flex justify-content-between align-items-center">
-            <div className="d-flex">
+            <div className="d-flex align-items-center">
               <input
                 type="checkbox"
                 className="form-check-input"
@@ -55,8 +55,8 @@ function ListTodo({ list, onItemDelete, onItemDoubleClick }: Props) {
               <span
                 className={
                   checkBoxValues[item.id]
-                    ? "ms-2 text-decoration-line-through opacity-50 user-select-none"
-                    : "ms-2 user-select-none"
+                    ? "ms-2 text-decoration-line-through opacity-50 user-select-none text-break"
+                    : "ms-2 user-select-none text-break"
                 }
               >
                 {item.text}

@@ -11,7 +11,7 @@ export interface TodoItem {
   id: string;
   text: string;
   description: string;
-  status: 'Not started' | 'In progress' | 'Completed' | 'On Hold';
+  status: "Not started" | "In progress" | "Completed" | "On Hold";
 }
 
 const InputTodo: React.FC<Props> = ({ label }) => {
@@ -22,8 +22,16 @@ const InputTodo: React.FC<Props> = ({ label }) => {
     return "_" + Math.random().toString(36).substr(2, 9);
   };
 
-  const handleAddTodo = (text: string, description: string, status: 'Not started' | 'In progress' | 'Completed' | 'On Hold') => {
-    if (listTodo.some((item) => item.text === text && item.description === description)) {
+  const handleAddTodo = (
+    text: string,
+    description: string,
+    status: "Not started" | "In progress" | "Completed" | "On Hold"
+  ) => {
+    if (
+      listTodo.some(
+        (item) => item.text === text && item.description === description
+      )
+    ) {
       alert("The item is already in the list");
       return;
     }
@@ -60,21 +68,26 @@ const InputTodo: React.FC<Props> = ({ label }) => {
       <label className="form-label mt-3 text-center">{label}</label>
       <TodoForm onAddTodo={handleAddTodo} />
       <div className="d-flex justify-content-between">
-        {['Not started', 'In progress', 'Completed', 'On Hold'].map((status) => (
-          <TodoColumn
-            key={status}
-            status={status as 'Not started' | 'In progress' | 'Completed' | 'On Hold'}
-            todos={groupedTodos[status] || []}
-            onItemDelete={handleItemDelete}
-            onItemDoubleClick={handleTodoDoubleClick}
-          />
-        ))}
+        {["Not started", "In progress", "Completed", "On Hold"].map(
+          (status) => (
+            <TodoColumn
+              key={status}
+              status={
+                status as
+                  | "Not started"
+                  | "In progress"
+                  | "Completed"
+                  | "On Hold"
+              }
+              todos={groupedTodos[status] || []}
+              onItemDelete={handleItemDelete}
+              onItemDoubleClick={handleTodoDoubleClick}
+            />
+          )
+        )}
       </div>
       {selectedTodo && (
-        <TodoDetailsModal
-          todo={selectedTodo}
-          onClose={handleCloseModal}
-        />
+        <TodoDetailsModal todo={selectedTodo} onClose={handleCloseModal} />
       )}
     </div>
   );
