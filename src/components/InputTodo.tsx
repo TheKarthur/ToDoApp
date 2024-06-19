@@ -61,15 +61,7 @@ const InputTodo: React.FC<Props> = ({ label }) => {
     //not implemented
     const updatedList = listTodo.map((item) => {
       if (item.id === id) {
-        if (item.status === "Not started") {
-          item.status = "In progress";
-        } else if (item.status === "In progress") {
-          item.status = "Completed";
-        } else if (item.status === "Completed") {
-          item.status = "On Hold";
-        } else if (item.status === "On Hold") {
-          item.status = "Not started";
-        }
+        item.status = status;
       }
       return item;
     });
@@ -107,7 +99,7 @@ const InputTodo: React.FC<Props> = ({ label }) => {
         )}
       </div>
       {selectedTodo && (
-        <TodoDetailsModal todo={selectedTodo} onClose={handleCloseModal} />
+        <TodoDetailsModal todo={selectedTodo} onClose={handleCloseModal} onChangeStatus={onChangeStatus} />
       )}
     </div>
   );

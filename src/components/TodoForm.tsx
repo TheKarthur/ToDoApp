@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import StatusSelect from "./StatusSelect"; // Importe o novo componente
 
 interface TodoFormProps {
   onAddTodo: (text: string, description: string, status: 'Not started' | 'In progress' | 'Completed' | 'On Hold') => void;
@@ -17,8 +18,8 @@ const TodoForm: React.FC<TodoFormProps> = ({ onAddTodo }) => {
     setInputDescription(event.target.value);
   };
 
-  const handleStatusChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setStatus(event.target.value as 'Not started' | 'In progress' | 'Completed' | 'On Hold');
+  const handleStatusChange = (value: 'Not started' | 'In progress' | 'Completed' | 'On Hold') => {
+    setStatus(value);
   };
 
   const handleAddButtonClick = () => {
@@ -52,12 +53,7 @@ const TodoForm: React.FC<TodoFormProps> = ({ onAddTodo }) => {
         onChange={handleDescriptionChange}
         onKeyDown={handleKeyDown}
       />
-      <select className="form-select" value={status} onChange={handleStatusChange}>
-        <option value="Not started">Not started</option>
-        <option value="In progress">In progress</option>
-        <option value="Completed">Completed</option>
-        <option value="On Hold">On Hold</option>
-      </select>
+      <StatusSelect value={status} onChange={handleStatusChange} />
       <button className="btn btn-primary" onClick={handleAddButtonClick}>
         Add
       </button>
