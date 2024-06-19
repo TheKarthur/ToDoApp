@@ -28,20 +28,25 @@ function ListTodo({ list, onItemDelete, onItemDoubleClick }: Props) {
   };
 
   const handleCheckBoxClick = (id: string, isChecked: boolean) => {
+    
     setCheckBoxValues((prevValues) => ({
       ...prevValues,
       [id]: isChecked,
     }));
   };
 
-  const handleItemDoubleClick = (item: TodoItem) => {
-    onItemDoubleClick(item);
-  };
+  let count=0;
 
+  const handleItemDoubleClick = (item: TodoItem) => {
+    if(count>=2){
+      onItemDoubleClick(item);
+    }
+  };
+  
   return (
     <ul className="list-group">
       {list.map((item) => (
-        <li key={item.id} className="list-group-item w-auto" style={{ minWidth: '150px' }} onDoubleClick={() => handleItemDoubleClick(item)}>
+        <li key={item.id} className="list-group-item w-auto" style={{ minWidth: '150px' }} onClick={() => count++} onDoubleClick={() => handleItemDoubleClick(item)}>
           <div className="d-flex justify-content-between align-items-center">
             <div className="d-flex align-items-center">
               <input
@@ -51,6 +56,7 @@ function ListTodo({ list, onItemDelete, onItemDoubleClick }: Props) {
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
                   handleCheckBoxClick(item.id, event.target.checked)
                 }
+                onClick={() => count=0}
               />
               <span
                 className={
