@@ -57,6 +57,24 @@ const InputTodo: React.FC<Props> = ({ label }) => {
     setSelectedTodo(null);
   };
 
+  const onChangeStatus = (id: string) => {
+    const updatedList = listTodo.map((item) => {
+      if (item.id === id) {
+        if (item.status === "Not started") {
+          item.status = "In progress";
+        } else if (item.status === "In progress") {
+          item.status = "Completed";
+        } else if (item.status === "Completed") {
+          item.status = "On Hold";
+        } else if (item.status === "On Hold") {
+          item.status = "Not started";
+        }
+      }
+      return item;
+    });
+    setListTodo(updatedList);
+  }
+
   const groupedTodos = listTodo.reduce((acc, item) => {
     acc[item.status] = acc[item.status] || [];
     acc[item.status].push(item);
@@ -82,6 +100,7 @@ const InputTodo: React.FC<Props> = ({ label }) => {
               todos={groupedTodos[status] || []}
               onItemDelete={handleItemDelete}
               onItemDoubleClick={handleTodoDoubleClick}
+              onChangeStatus={onChangeStatus}
             />
           )
         )}

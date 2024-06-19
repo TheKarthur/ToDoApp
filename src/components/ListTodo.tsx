@@ -11,9 +11,10 @@ interface Props {
   list: TodoItem[];
   onItemDelete: (id: string) => void;
   onItemDoubleClick: (item: TodoItem) => void;
+  onChangeStatus: (id: string) => void;
 }
 
-function ListTodo({ list, onItemDelete, onItemDoubleClick }: Props) {
+function ListTodo({ list, onItemDelete, onItemDoubleClick, onChangeStatus }: Props) {
   const initialCheckBoxValues = list.reduce((acc, item) => {
     acc[item.id] = false;
     return acc;
@@ -42,6 +43,10 @@ function ListTodo({ list, onItemDelete, onItemDoubleClick }: Props) {
       onItemDoubleClick(item);
     }
   };
+
+  const changeStatus = (id: string, status: 'Not started' | 'In progress' | 'Completed' | 'On Hold') => {
+    onChangeStatus(id);
+  }
   
   return (
     <ul className="list-group">
@@ -74,6 +79,10 @@ function ListTodo({ list, onItemDelete, onItemDoubleClick }: Props) {
             >
               Delete
             </button>
+            {/* <button
+              className="btn btn-primary"
+              onClick={() => changeStatus(item.id, item.status)}
+            ></button> */}
           </div>
         </li>
       ))}

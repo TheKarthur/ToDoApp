@@ -7,9 +7,10 @@ interface TodoColumnProps {
   todos: TodoItem[];
   onItemDelete: (id: string) => void;
   onItemDoubleClick: (item: TodoItem) => void;
+  onChangeStatus: (id: string) => void;
 }
 
-const TodoColumn: React.FC<TodoColumnProps> = ({ status, todos, onItemDelete, onItemDoubleClick }) => {
+const TodoColumn: React.FC<TodoColumnProps> = ({ status, todos, onItemDelete, onItemDoubleClick, onChangeStatus}) => {
   return (
     <div className="card w-25 m-2 shadow-sm" style={{ minWidth: '200px' }}>
       <div className="card-body">
@@ -18,6 +19,7 @@ const TodoColumn: React.FC<TodoColumnProps> = ({ status, todos, onItemDelete, on
           list={todos}
           onItemDelete={onItemDelete}
           onItemDoubleClick={onItemDoubleClick}
+          onChangeStatus={onChangeStatus}
         />
       </div>
     </div>
