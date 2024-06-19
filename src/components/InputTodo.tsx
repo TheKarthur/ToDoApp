@@ -57,7 +57,8 @@ const InputTodo: React.FC<Props> = ({ label }) => {
     setSelectedTodo(null);
   };
 
-  const onChangeStatus = (id: string) => {
+  const onChangeStatus = (id: string, status: 'Not started' | 'In progress' | 'Completed' | 'On Hold') => {
+    //not implemented
     const updatedList = listTodo.map((item) => {
       if (item.id === id) {
         if (item.status === "Not started") {

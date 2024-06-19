@@ -7,7 +7,7 @@ interface TodoColumnProps {
   todos: TodoItem[];
   onItemDelete: (id: string) => void;
   onItemDoubleClick: (item: TodoItem) => void;
-  onChangeStatus: (id: string) => void;
+  onChangeStatus: (id: string, status: 'Not started' | 'In progress' | 'Completed' | 'On Hold') => void;
 }
 
 const TodoColumn: React.FC<TodoColumnProps> = ({ status, todos, onItemDelete, onItemDoubleClick, onChangeStatus}) => {

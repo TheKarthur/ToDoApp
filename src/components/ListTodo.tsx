@@ -11,7 +11,7 @@ interface Props {
   list: TodoItem[];
   onItemDelete: (id: string) => void;
   onItemDoubleClick: (item: TodoItem) => void;
-  onChangeStatus: (id: string) => void;
+  onChangeStatus: (id: string, status: 'Not started' | 'In progress' | 'Completed' | 'On Hold') => void;
 }
 
 function ListTodo({ list, onItemDelete, onItemDoubleClick, onChangeStatus }: Props) {
@@ -45,7 +45,7 @@ function ListTodo({ list, onItemDelete, onItemDoubleClick, onChangeStatus }: Pro
   };
 
   const changeStatus = (id: string, status: 'Not started' | 'In progress' | 'Completed' | 'On Hold') => {
-    onChangeStatus(id);
+    onChangeStatus(id, status);
   }
   
   return (
