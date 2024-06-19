@@ -67,7 +67,7 @@ const InputTodo: React.FC<Props> = ({ label }) => {
     <div className="container mb-3">
       <label className="form-label mt-3 text-center">{label}</label>
       <TodoForm onAddTodo={handleAddTodo} />
-      <div className="d-flex justify-content-between">
+      <div className="d-flex justify-content-between overflow-auto">
         {["Not started", "In progress", "Completed", "On Hold"].map(
           (status) => (
             <TodoColumn

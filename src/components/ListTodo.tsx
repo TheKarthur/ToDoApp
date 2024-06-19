@@ -41,12 +41,12 @@ function ListTodo({ list, onItemDelete, onItemDoubleClick }: Props) {
   return (
     <ul className="list-group">
       {list.map((item) => (
-        <li key={item.id} className="list-group-item" onDoubleClick={() => handleItemDoubleClick(item)}>
+        <li key={item.id} className="list-group-item w-auto" style={{ minWidth: '150px' }} onDoubleClick={() => handleItemDoubleClick(item)}>
           <div className="d-flex justify-content-between align-items-center">
             <div className="d-flex align-items-center">
               <input
                 type="checkbox"
-                className="form-check-input"
+                className="form-check-input me-2"
                 checked={checkBoxValues[item.id]}
                 onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
                   handleCheckBoxClick(item.id, event.target.checked)
@@ -55,8 +55,8 @@ function ListTodo({ list, onItemDelete, onItemDoubleClick }: Props) {
               <span
                 className={
                   checkBoxValues[item.id]
-                    ? "ms-2 text-decoration-line-through opacity-50 user-select-none text-break"
-                    : "ms-2 user-select-none text-break"
+                    ? "me-2 text-decoration-line-through opacity-50 user-select-none text-break"
+                    : "me-2 user-select-none text-break"
                 }
               >
                 {item.text}

@@ -11,7 +11,7 @@ interface TodoColumnProps {
 
 const TodoColumn: React.FC<TodoColumnProps> = ({ status, todos, onItemDelete, onItemDoubleClick }) => {
   return (
-    <div className="card w-25 m-2 shadow-sm">
+    <div className="card w-25 m-2 shadow-sm" style={{ minWidth: '200px' }}>
       <div className="card-body">
         <h5 className="card-title user-select-none">{status}</h5>
         <ListTodo
