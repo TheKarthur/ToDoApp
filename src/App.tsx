@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 function App() {
 
   return ( 
-    <InputTodo label="To Do List"/>
+    <InputTodo/>
   );
 }
 
