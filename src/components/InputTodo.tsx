@@ -58,15 +58,14 @@ const InputTodo: React.FC<Props> = ({ label }) => {
   };
 
   const onChangeStatus = (id: string, status: 'Not started' | 'In progress' | 'Completed' | 'On Hold') => {
-    // To implement a new sorting of the list when changing the status of a 'todo'.
-    const updatedList = listTodo.map((item) => {
-      if (item.id === id) {
-        item.status = status;
-      }
-      return item;
-    });
-    setListTodo(updatedList);
-
+    
+    const temp = listTodo.filter((item) => item.id !== id);
+    const item = listTodo.find((item) => item.id === id);
+    if (item) {
+      item.status = status;
+      temp.push(item);
+    }
+    setListTodo(temp);
   }
 
   const groupedTodos = listTodo.reduce((acc, item) => {
