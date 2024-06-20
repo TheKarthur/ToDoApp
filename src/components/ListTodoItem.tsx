@@ -49,16 +49,19 @@ const ListTodoItem: React.FC<ListTodoItemProps> = ({
 
   drag(drop(ref));
 
+  let count = 0;
+
   return (
     <li
       ref={ref}
       className="list-group-item w-auto"
-      style={{ 
-        minWidth: '150px',
-        backgroundColor: isDragging ? '#f0f0f0' : 'white',
-        cursor: isDragging ? 'move' : 'default'
-      }}       
-      onDoubleClick={() => onDoubleClick(item)}
+      style={{
+        minWidth: "150px",
+        backgroundColor: isDragging ? "#f0f0f0" : "white",
+        cursor: isDragging ? "move" : "default",
+      }}
+      onClick={() => count++}
+      onDoubleClick={() => (count >= 2 ? onDoubleClick(item) : undefined)}
     >
       <div className="d-flex justify-content-between align-items-center">
         <div className="d-flex align-items-center">
@@ -69,6 +72,7 @@ const ListTodoItem: React.FC<ListTodoItemProps> = ({
             onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
               onCheckBoxClick(item.id, event.target.checked)
             }
+            onClick={() => (count = 0)}
           />
           <span
             className={
