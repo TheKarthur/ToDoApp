@@ -1,7 +1,7 @@
 import React from "react";
 import { useDrop } from "react-dnd";
 import ListTodo from "./ListTodo";
-import { TodoItem } from "./InputTodo";
+import { TodoItem } from "./TodoApp";
 
 interface TodoColumnProps {
   status: 'Not started' | 'In progress' | 'Completed' | 'On Hold';
