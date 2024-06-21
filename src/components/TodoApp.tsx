@@ -63,7 +63,12 @@ const TodoApp: React.FC = () => {
   };
 
   const onChangeStatus = (id: string, status: 'Not started' | 'In progress' | 'Completed' | 'On Hold') => {
-    const updatedList = listTodo.map(item => item.id === id ? { ...item, status } : item);
+    const updatedList = listTodo.filter((item) => item.id !== id);
+    const item = listTodo.find((item) => item.id === id);
+    if (item) {
+      item.status = status;
+      updatedList.push(item);
+    }
     setListTodo(updatedList);
     saveToLocalStorage(updatedList);
   };
