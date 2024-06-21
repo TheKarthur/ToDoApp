@@ -1,10 +1,10 @@
-import InputTodo from "./components/InputTodo";
+import TodoApp from "./components/TodoApp";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
 
   return ( 
-    <InputTodo/>
+    <TodoApp/>
   );
 }
 

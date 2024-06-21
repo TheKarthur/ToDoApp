@@ -12,7 +12,7 @@ export interface TodoItem {
   status: "Not started" | "In progress" | "Completed" | "On Hold";
 }
 
-const InputTodo: React.FC = () => {
+const TodoApp: React.FC = () => {
   const [listTodo, setListTodo] = useState<TodoItem[]>([]);
   const [selectedTodo, setSelectedTodo] = useState<TodoItem | null>(null);
 
@@ -109,4 +109,4 @@ const InputTodo: React.FC = () => {
   );
 };
 
-export default InputTodo;
+export default TodoApp;
