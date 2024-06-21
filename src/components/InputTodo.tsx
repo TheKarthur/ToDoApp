@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TodoForm from "./TodoForm";
 import TodoColumn from "./TodoColumn";
 import TodoDetailsModal from "./TodoDetailsModal";
@@ -16,8 +16,25 @@ const InputTodo: React.FC = () => {
   const [listTodo, setListTodo] = useState<TodoItem[]>([]);
   const [selectedTodo, setSelectedTodo] = useState<TodoItem | null>(null);
 
+  useEffect(() => {
+    const todos = loadFromLocalStorage();
+    setListTodo(todos);
+  }, []);
+
   const generateId = (): string => {
     return "_" + Math.random().toString(36).substr(2, 9);
+  };
+
+  const saveToLocalStorage = (todos: TodoItem[]) => {
+    localStorage.setItem('todos', JSON.stringify(todos));
+  };
+
+  const loadFromLocalStorage = (): TodoItem[] => {
+    const data = localStorage.getItem('todos');
+    if (data) {
+      return JSON.parse(data);
+    }
+    return [];
   };
 
   const handleAddTodo = (text: string, description: string, status: "Not started" | "In progress" | "Completed" | "On Hold") => {
@@ -26,12 +43,15 @@ const InputTodo: React.FC = () => {
       return;
     }
     const newTodo: TodoItem = { id: generateId(), text, description, status };
-    setListTodo([...listTodo, newTodo]);
+    const updatedList = [...listTodo, newTodo];
+    setListTodo(updatedList);
+    saveToLocalStorage(updatedList);
   };
 
   const handleItemDelete = (id: string) => {
     const updatedList = listTodo.filter(item => item.id !== id);
     setListTodo(updatedList);
+    saveToLocalStorage(updatedList);
   };
 
   const handleTodoDoubleClick = (todo: TodoItem) => {
@@ -45,6 +65,7 @@ const InputTodo: React.FC = () => {
   const onChangeStatus = (id: string, status: 'Not started' | 'In progress' | 'Completed' | 'On Hold') => {
     const updatedList = listTodo.map(item => item.id === id ? { ...item, status } : item);
     setListTodo(updatedList);
+    saveToLocalStorage(updatedList);
   };
 
   const moveItem = (status: 'Not started' | 'In progress' | 'Completed' | 'On Hold', dragIndex: number, hoverIndex: number) => {
@@ -53,6 +74,7 @@ const InputTodo: React.FC = () => {
     items.splice(hoverIndex, 0, draggedItem);
     const updatedList = listTodo.filter(item => item.status !== status).concat(items);
     setListTodo(updatedList);
+    saveToLocalStorage(updatedList);
   };
 
   const groupedTodos = listTodo.reduce((acc, item) => {
